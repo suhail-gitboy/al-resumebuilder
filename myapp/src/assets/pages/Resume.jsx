@@ -280,14 +280,11 @@ const HandlePrompt=()=>{
         if(res.data.status){
             console.log(res.data.aiprompt);
             
-            setUserInformation({
-                ...userInformation,personalDetails:{
-                    ...userInformation.personalDetails,
-                    about:res.data.aiprompt
-                }
-               
-                
-            })
+            setUserInformation((prev)=>({
+              ...prev,personalDetails:{
+                ...prev.personalDetails,about:res.data.aiprompt
+              }
+            }))
              console.log("after",userInformation.personalDetails.about);
 Setloading(false)
 
