@@ -2,7 +2,7 @@ import express from "express";
 import Loginmodal from "../Schemas/UserloginSchma.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
-import { data } from "react-router";
+
 const Secretkey="Mykey"
 export const  Loginrouter=express.Router()
 
