@@ -31,10 +31,7 @@ const Loginfunction=(values)=>{
       Setlogin(false)
         
       
-     setTimeout(()=>{
-       
-      location.reload();
-     },2000)
+
       
       Setunsername(res.data.name)
      
