@@ -18,7 +18,7 @@ const Nav = ({name , Setunsername,loginmodal,Setmodallogin,coverLetter,Setcoverl
   const [translate,Settranslate]=useState(false)
 
   const Handlelogut=()=>{
-    axios.post("http://localhost:8300/api/logout", { withCredentials: true }).then((res)=>{
+    axios.post("https://al-resumebuilder.onrender.com/api/logout", { withCredentials: true }).then((res)=>{
       if(res.data.status){
      
 
@@ -30,7 +30,7 @@ const Nav = ({name , Setunsername,loginmodal,Setmodallogin,coverLetter,Setcoverl
   }
 
 useEffect(()=>{
-    axios.get("http://localhost:8300/api/getname",{withCredentials:true})
+    axios.get("https://al-resumebuilder.onrender.com/api/getname",{withCredentials:true})
     .then(res=>{
       console.log(res.data);
       Setunsername(res.data.name)
