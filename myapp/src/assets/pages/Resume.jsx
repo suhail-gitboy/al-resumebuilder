@@ -433,7 +433,7 @@ onClick={Handleupdated}    >
       <a
      
      
-      className="flex items-center justify-center gap-2 bg-linear-to-r from-blue-600 to-purple-600 text-white px-5 py-2 rounded-lg font-medium shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-200"
+      className="flex items-center text-nowrap  text-xs md:text-lg justify-center gap-2 bg-linear-to-r from-blue-600 to-purple-600 text-white px-5 py-2 rounded-lg font-medium shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-200"
     >
       <Download size={20} />
       draft resume
@@ -443,7 +443,7 @@ onClick={Handleupdated}    >
  <div>
   
  {
-  isLogin? <SwitchtypePdf/> :<button className='bg-indigo-600 text-white px-6 py-2 rounded-lg shadow hover:bg-indigo-700 transition-all"' onClick={()=>Setmodallogin(true)}>
+  isLogin? <SwitchtypePdf/> :<button className='bg-indigo-600 text-xs text-nowrap md:text-lg text-white px-6 py-2 rounded-lg shadow hover:bg-indigo-700 transition-all"' onClick={()=>Setmodallogin(true)}>
       login to download
     </button>
  }
@@ -451,7 +451,7 @@ onClick={Handleupdated}    >
  </div>
 
  <div>
-  <Link className="flex justify-center items-center px-9 py-2   bg-linear-to-r from-blue-600 to-blue-800 text-white  rounded-lg font-medium shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-200 " to={`/preview/${resumetype}`}><FaEye className='text-xl ml-2 mr-2'/> view</Link>
+  <Link className="flex justify-center  text-xs md:text-lg items-center px-5  py-2   bg-linear-to-r from-blue-600 to-blue-800 text-white  rounded-lg font-medium shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-200 " to={`/preview/${resumetype}`}><FaEye className='text-xl ml-2 mr-2'/> view</Link>
  </div>
 </div>
 {Switchresume()}

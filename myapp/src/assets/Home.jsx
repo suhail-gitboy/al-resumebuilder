@@ -17,20 +17,20 @@ const Home = () => {
       <main className="flex-1 gap-y-10  flex flex-col lg:flex-row items-center py-14 justify-between px-14">
         {/* Text Section */}
         <div className="max-w-xl space-y-8">
-          <h2 className="md:text-6xl text-2xl  font-extrabold bg-white/40 bg-clip-text text-transparent">
+          <h2 className="text-2xl  md:text-6xl  font-extrabold bg-white/40 bg-clip-text text-transparent">
             Build Your Dream Resume <br />
             with Ease.
           </h2>
-          <p className="text-gray-400 text-md md:text-lg leading-relaxed">
+          <p className="text-gray-400 text-sm md:text-lg leading-relaxed">
             Create a powerful and professional resume with our easy-to-use
             builder. Pick a stunning template, fill in your details, and
             download your personalized resume instantly.
           </p>
-          <div className="space-x-4">
-            <Link to="/generate" className="bg-linear-to-r from-purple-950 via-purple-800 to-purple-950 hover:bg-violet-600   px-6 py-3 rounded-lg font-semibold transition">
+          <div className="space-x-2 md:space-x-4" >
+            <Link to="/generate" className="bg-linear-to-r text-xs md:text-lg from-purple-950 via-purple-800 to-purple-950 hover:bg-violet-600 px-3 py-2   md:px-6 md:py-3 rounded-lg font-semibold transition">
               Start Building →
             </Link>
-            <a className="border border-purple-500 text-purple-400 px-6 py-3 rounded-lg hover:bg-purple-500 hover:text-white transition"  href="#template">
+            <a className="border text-xs md:text-lg px-3 py-2 border-purple-500 text-purple-400 md:px-6 md:py-3 rounded-lg hover:bg-purple-500 hover:text-white transition"  href="#template">
               View Templates
             </a>
 <Skeleton variant="rectangular " width="100%" height="100%" />
@@ -42,7 +42,7 @@ const Home = () => {
       initial={{ opacity: 0, scale: 0.97 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative w-full md:w-1/2 h-120 rounded-2xl bg-neutral-800/20 backdrop-blur-md border border-white/10 p-6 flex flex-col items-center overflow-hidden"
+      className="relative w-full md:w-1/2 h-90 md:h-120 rounded-2xl bg-neutral-800/20 backdrop-blur-md border border-white/10 p-6 flex flex-col items-center overflow-hidden"
     >
       {/* Resume Images */}
       <div className="relative flex justify-center items-center gap-10 pt-10">
@@ -91,7 +91,7 @@ const Home = () => {
     </motion.div>
       </main>
 <div className="w-screen" >
- <ReviewsSection />
+ <ReviewsSection  />
  
 </div>
       

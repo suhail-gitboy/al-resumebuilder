@@ -45,37 +45,12 @@ Start Now
         </div>
 
         {/* Template 3 */}
-        <div className="bg-gray-900 rounded-2xl p-6 shadow-lg hover:shadow-pink-600/30 hover:scale-105 transition-all duration-300">
-          <h2 className="text-xl font-semibold text-pink-400 mb-2">
-            Blog Template
-          </h2>
-          <p className="text-gray-400">
-            Clean and modern blog layout with easy-to-read typography and
-            elegant spacing for your articles.
-          </p>
-        </div>
+  
 
         {/* Template 4 */}
-        <div className="bg-gray-900 rounded-2xl p-6 shadow-lg hover:shadow-green-600/30 hover:scale-105 transition-all duration-300">
-          <h2 className="text-xl font-semibold text-green-400 mb-2">
-            E-Commerce Template
-          </h2>
-          <p className="text-gray-400">
-            A responsive online store design with product grids, pricing
-            sections, and beautiful call-to-action buttons.
-          </p>
-        </div>
+       
 
-        {/* Template 5 */}
-        <div className="bg-gray-900 rounded-2xl p-6 shadow-lg hover:shadow-yellow-500/30 hover:scale-105 transition-all duration-300">
-          <h2 className="text-xl font-semibold text-yellow-400 mb-2">
-            Dashboard Template
-          </h2>
-          <p className="text-gray-400">
-            Powerful admin dashboard UI featuring charts, analytics, and
-            user-friendly data visualization.
-          </p>
-        </div>
+     
 
         {/* Template 6 */}
         <div className="bg-gray-900 rounded-2xl p-6 shadow-lg hover:shadow-red-600/30 hover:scale-105 transition-all duration-300">

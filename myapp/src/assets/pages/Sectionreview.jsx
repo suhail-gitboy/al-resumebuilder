@@ -33,7 +33,7 @@ const ReviewsSection = () => {
    
     <Templates/>
       {/* Reviews Grid */}
-         <div className="text-center mb-12">
+         <div className="text-center mb-12" >
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4 bg-linear-to-r from-purple-950 via-purple-500 to-purple-950 bg-clip-text text-transparent">
           Template Reviews
         </h1>

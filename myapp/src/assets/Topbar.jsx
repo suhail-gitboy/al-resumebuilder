@@ -1,10 +1,51 @@
 import React from 'react'
 import { Trash2, Cpu } from 'lucide-react'
 
+import Button from '@mui/material/Button';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Grow from '@mui/material/Grow';
+import Paper from '@mui/material/Paper';
+import Popper from '@mui/material/Popper';
+import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
+import Stack from '@mui/material/Stack';
+
 // Full-width top bar component
 // Usage: <TopBar username="Suhail Ameer" onDelete={()=>{}} onAI={()=>{}} />
 export default function TopBar({Setcoverletter, name, setUserInformation, onAI = () => {},Setresumetype,Resumetype,  Setisopenmodal }){
+ const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
 
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+ const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+   function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    } else if (event.key === 'Escape') {
+      setOpen(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
 
 
   const onDelete=()=>{
@@ -61,7 +102,7 @@ grade:""
   
 });}
   return (
-    <header className="w-full bg-neutral-900 rounded-lg">
+    <header className="w-full bg-neutral-900 rounded-lg ">
       <div className="max-w-full mx-auto px-4 py-4 rounded-md">
         <div className="flex items-center justify-between h-16">
           {/* Left: Username */}
@@ -77,7 +118,81 @@ grade:""
           </div>
 
           {/* Right: Actions (Resume theme label + icons) */}
-          <div className="flex items-center gap-4">
+          <div className='flex md:hidden'>
+  <Stack direction="row" spacing={2}>
+      
+      <div>
+        <Button
+          ref={anchorRef}
+          id="composition-button"
+          aria-controls={open ? 'composition-menu' : undefined}
+          aria-expanded={open ? 'true' : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
+        >
+          Menu
+        </Button>
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          placement="bottom-start"
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === 'bottom-start' ? 'left top' : 'left bottom',
+              }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList 
+                  sx={{padding:"8px"
+                  }}
+                    autoFocusItem={open}
+                    id="composition-menu"
+                    aria-labelledby="composition-button"
+                    onKeyDown={handleListKeyDown}
+                  >
+                       <div className="flex items-center mb-2 gap-2 px-3 py-1 rounded-md bg-linear-to-r from-purple-900 via-purple-700 to-purple-600 text-white">
+              <h2  className="text-sm px-4 font-semibold py-1" onClick={()=>Setisopenmodal(true)}>
+               {Resumetype}
+              </h2>
+            </div>
+                    
+                        <button
+              onClick={()=>Setcoverletter(true)}
+              aria-label="AI tools"
+              className="flex items-center gap-2 px-3 mb-2 py-1 rounded-md bg-blue-600 hover:bg-blue-500 transition-shadow shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+            >
+              <div className="w-6 h-6 flex items-center justify-center rounded-full bg-white/10">
+                <Cpu className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-white text-sm font-bold bg-linear-to-r from-blue-600 to to-blue-500">Coverletter</span>
+            </button>
+                   
+               <button
+              onClick={onDelete}
+              aria-label="Delete"
+              className="flex  text-white px-3 items-center w-full h-10 rounded-md bg-red-600 hover:bg-red-500 transition-colors focus:outline-none focus:ring-2 focus:ring-red-300"
+            >
+              <Trash2 className="w-4 h-4  mr-2 text-white" />
+              clear
+            </button>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </div>
+    </Stack>
+          </div>
+          <div className="items-center gap-4 hidden sm:flex">
             <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-linear-to-r from-purple-900 via-purple-700 to-purple-600 text-white">
               <h2  className="text-sm px-4 font-semibold py-1" onClick={()=>Setisopenmodal(true)}>
                {Resumetype}

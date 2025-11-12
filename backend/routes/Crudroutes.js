@@ -1,7 +1,7 @@
 import express from "express";
 import Resumemodel from "../Schemas/ResumeSchema.js";
 import { Protuctmiddleware } from "../Middleware.js";
-import { use } from "react";
+
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export const Crudrouter=express.Router()

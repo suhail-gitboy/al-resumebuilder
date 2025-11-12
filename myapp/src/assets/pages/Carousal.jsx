@@ -39,7 +39,7 @@ const Carousal = () => {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto py-10 px-4">
+    <div className="max-w-6xl mx-auto py-10 px-4 hidden md:flex ">
       <h2 className="text-3xl font-bold text-center mb-6 text-white">
         Resume types
       </h2>
