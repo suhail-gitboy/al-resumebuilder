@@ -58,9 +58,9 @@ console.log(email);
     
 res.cookie("token",token,{
     httpOnly:true,
-     sameSite: "lax",  // works for localhost (HTTP)
-  secure: false,  
-    maxAge:3600*1000
+    secure: true,
+    sameSite: "none",
+    maxAge: 3600 * 1000,
 })
 
 return res.json({status:true,message:"login successfully",name:Checkif.name})
