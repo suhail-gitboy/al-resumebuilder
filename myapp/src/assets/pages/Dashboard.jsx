@@ -12,7 +12,7 @@ console.log(resumes,"resumes");
 const {userInformation,setUserInformation}=useOutletContext()
 const Navigate=useNavigate()
   useEffect(()=>{
-    axios.get("http://localhost:8300/api/getdata",{withCredentials:true})
+    axios.get("https://al-resumebuilder.onrender.com/api/getdata",{withCredentials:true})
     .then(res=>{
       console.log(res.data.resume);
       Setresumes(res.data.resume)
@@ -33,7 +33,7 @@ Setupdate(id)
   }
 
   const Handledelete=(id)=>{
-    axios.delete(`http://localhost:8300/api/delete/${id}`,{withCredentials:true}).then(res=>{
+    axios.delete(`https://al-resumebuilder.onrender.com/api/delete/${id}`,{withCredentials:true}).then(res=>{
       if(res.data.message){
         setTimeout(() => {
           toast.success(res.data.message)

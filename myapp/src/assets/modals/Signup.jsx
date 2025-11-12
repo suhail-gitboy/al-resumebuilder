@@ -27,7 +27,7 @@ const refdata=useRef(null)
 
   const Handlesubmit=(values)=>{
    
-    axios.post("http://localhost:8300/api/signup",{name:values.name,password:values.password,email:values.email}).then((res)=>{
+    axios.post("https://al-resumebuilder.onrender.com/api/signup",{name:values.name,password:values.password,email:values.email}).then((res)=>{
       console.log(res.data.message);
       if(res.data.status){
        console.log(res.data.status);

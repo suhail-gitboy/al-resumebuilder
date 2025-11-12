@@ -25,7 +25,7 @@ export default function CoverLetterModal({Setcoverletter,userInformation}) {
 
   const ForgenAlletter=()=>{
 
-    axios.post("http://localhost:8300/api/ailetter",{letterprompt:resume},{withCredentials:true}).then((res)=>{
+    axios.post("https://al-resumebuilder.onrender.com/api/ailetter",{letterprompt:resume},{withCredentials:true}).then((res)=>{
       if(res.data.status){
         console.log(res.data.ailetter);
         
@@ -76,10 +76,10 @@ export default function CoverLetterModal({Setcoverletter,userInformation}) {
        </div>
  
         {/* Body */}
-        <main className="flex-1 overflow-hidden md:flex">
+        <main className="flex flex-col overflow-scroll  md:flex-row">
            
           {/* Left column: Applicant info / cover image */}
-          <aside className="hidden md:flex md:w-1/3 lg:w-1/4 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 p-6 flex-col gap-6 border-r border-gray-100 dark:border-gray-800">
+          <aside className="w-full md:flex md:w-1/3 lg:w-1/4 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 p-6 flex-col gap-6 border-r border-gray-100 dark:border-gray-800">
             <div className="flex flex-col items-start gap-3">
             
               <div className="bg-gray-100 rounded-md  w-full flex flex-col items-center justify-center px-2 py-4 space-y-2 mx-auto">
@@ -139,7 +139,7 @@ export default function CoverLetterModal({Setcoverletter,userInformation}) {
           </aside>
 
           {/* Right column: Cover letter content */}
-          <section className="flex-1 overflow-auto p-6 md:p-8">
+          <section className="mt-5 flex md:flex-1  py-3 bg-white md:overflow-auto p-6 md:p-8">
             <div className="max-w-none bg-white p-4 lg:max-w-3xl mx-auto">
               <div className="mb-6 text-sm  text-black">
                 <p>{new Date().toLocaleDateString()}</p>
@@ -169,7 +169,7 @@ export default function CoverLetterModal({Setcoverletter,userInformation}) {
               </article>
 
               {/* Footer actions (UI only) */}
-              <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <div className="mt-8 pb-4 flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <PDFDownloadLink
               document={<CoverLetterPDF resume={resume} />}
               fileName={`${resume.name}-CoverLetter.pdf`}

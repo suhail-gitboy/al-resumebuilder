@@ -133,7 +133,7 @@ const [isLogin,Setislogin]=useState(false)
 
 
 useEffect(()=>{
-  axios.get("http://localhost:8300/api/checklogin",{withCredentials:true})
+  axios.get("https://al-resumebuilder.onrender.com/api/checklogin",{withCredentials:true})
   .then((res)=>{
     console.log(res.data);
     
@@ -183,7 +183,7 @@ else{
 
     
   
-axios.post("http://localhost:8300/api/save",{resumedata:userInformation},{withCredentials:true}).then(res=>{
+axios.post("https://al-resumebuilder.onrender.com/api/save",{resumedata:userInformation},{withCredentials:true}).then(res=>{
  
   if(res.data.message){
     toast.success(res.data.message)
@@ -199,7 +199,7 @@ const {isUpdate,Setupdate}=useOutletContext()
 
 
 const Handleupdated=()=>{
-  axios.put(`http://localhost:8300/api/update/${isUpdate}`,{resumedata:userInformation},{withCredentials:true}).then(res=>location.reload())
+  axios.put(`https://al-resumebuilder.onrender.com/api/update/${isUpdate}`,{resumedata:userInformation},{withCredentials:true}).then(res=>location.reload())
   Setupdate(null)
   console.log(isUpdate,"id");
   
@@ -276,7 +276,7 @@ const [loading,Setloading]=useState(false)
 
 const HandlePrompt=()=>{
     Setloading(true)
-    axios.post("http://localhost:8300/api/aioutput",{prompt:Prompt}).then((res)=>{
+    axios.post("https://al-resumebuilder.onrender.com/api/aioutput",{prompt:Prompt}).then((res)=>{
         if(res.data.status){
             console.log(res.data.aiprompt);
             
@@ -301,7 +301,7 @@ const [Expaiprompt,Setaiprompt]=useState("")
 
 const HandleExpairesult=()=>{
    Setloading(true)
-  axios.post("http://localhost:8300/api/aiexperience",{experienceprompt:Expaiprompt})
+  axios.post("https://al-resumebuilder.onrender.com/api/aiexperience",{experienceprompt:Expaiprompt})
   .then(res=>{if(res.data.status){
     console.log(res.data.aiworkexperience);
 setUserInformation({
