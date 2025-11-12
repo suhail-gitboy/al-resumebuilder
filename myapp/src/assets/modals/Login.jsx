@@ -21,7 +21,7 @@ const Initialvalues={
 }
 Axios.defaults.withCredentials=true
 const Loginfunction=(values)=>{
-  axios.post("https://al-resumebuilder.onrender.com/api/login",{email:values.email,password:values.password}).then(res=>{
+  axios.post("https://al-resumebuilder.onrender.com/api/login",{email:values.email,password:values.password},{ withCredentials: true }).then(res=>{
     console.log(values);
     
     if(res.data.status){

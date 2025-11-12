@@ -276,7 +276,7 @@ const [loading,Setloading]=useState(false)
 
 const HandlePrompt=()=>{
     Setloading(true)
-    axios.post("https://al-resumebuilder.onrender.com/api/aioutput",{prompt:Prompt}).then((res)=>{
+    axios.post("https://al-resumebuilder.onrender.com/api/aioutput",{prompt:Prompt},{ withCredentials: true }).then((res)=>{
         if(res.data.status){
             console.log(res.data.aiprompt);
             
@@ -301,7 +301,7 @@ const [Expaiprompt,Setaiprompt]=useState("")
 
 const HandleExpairesult=()=>{
    Setloading(true)
-  axios.post("https://al-resumebuilder.onrender.com/api/aiexperience",{experienceprompt:Expaiprompt})
+  axios.post("https://al-resumebuilder.onrender.com/api/aiexperience",{experienceprompt:Expaiprompt},{ withCredentials: true })
   .then(res=>{if(res.data.status){
     console.log(res.data.aiworkexperience);
 setUserInformation({
