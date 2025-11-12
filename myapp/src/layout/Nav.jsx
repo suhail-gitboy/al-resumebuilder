@@ -30,8 +30,7 @@ const Nav = ({name , Setunsername,loginmodal,Setmodallogin,coverLetter,Setcoverl
   }
 
 useEffect(()=>{
-    axios.get("https://al-resumebuilder.onrender.com/api/getname",{withCredentials:true})
-    .then(res=>{
+    axios.get("https://al-resumebuilder.onrender.com/api/getname",{ withCredentials:true}).then(res=>{
       console.log(res.data);
       Setunsername(res.data.name)
       
