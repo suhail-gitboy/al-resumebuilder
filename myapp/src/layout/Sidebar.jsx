@@ -15,7 +15,7 @@ const Sidebar = ({Setranslate,Setmodalsign,name,Handlelogut}) => {
        <nav className=" gap-8 text-gray-300 font-medium flex flex-col space-y-1 mt-20">
        {name==null? <button onClick={()=>Setmodalsign(true)} className="bg-purple-600 flex hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-semibold">
         <FaRegUser className='text-xl mr-2 text-white' />  register
-        </button>:<button  className="bg-purple-600 hidden md:flex hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-semibold" onClick={Handlelogut}>
+        </button>:<button  className="bg-purple-600  md:flex hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-semibold" onClick={Handlelogut}>
                  <IoIosLogOut className='text-xl mr-2 text-white' />  log-out
                 </button>}
           
