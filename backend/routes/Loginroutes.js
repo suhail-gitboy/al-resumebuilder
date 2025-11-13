@@ -81,7 +81,7 @@ Loginrouter.post("/logout",(req,res)=>{
 })
 
 
-Loginrouter.get("/checklogin",(req,res)=>{
+Loginrouter.get("/checklogin",Protuctmiddleware,(req,res)=>{
     const token=req.cookies.token
 
     if(!token){
