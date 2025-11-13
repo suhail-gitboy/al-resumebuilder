@@ -179,7 +179,7 @@ setTimeout(() => {
     toast.error("register to download")
   
 }, 1000);}
-else if(Object.values(userInformation.personalDetails).some(value=>userInformation.personalDetails[value]==="")){
+else if(Object.values(userInformation.personalDetails).some(value => value === "")){
 toast.error("please fill you personal details first")
 }
 else{ 
