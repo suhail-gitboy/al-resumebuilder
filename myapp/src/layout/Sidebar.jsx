@@ -2,6 +2,7 @@ import React from 'react'
 import { IoIosClose } from "react-icons/io";
 import { NavLink } from 'react-router'
 import { FaRegUser } from "react-icons/fa";
+import { IoIosLogOut } from 'react-icons/io';
 const Sidebar = ({Setranslate,Setmodalsign,name,Handlelogut}) => {
 
 
