@@ -71,12 +71,13 @@ return res.json({status:true,message:"login successfully",name:Checkif.name})
 
 
 Loginrouter.post("/logout",(req,res)=>{
-    res.clearCookie("token",{
-  httpOnly: true,
-  secure: true,
-  sameSite: "none",
-  path: "/", // 👈 must match exactly!
-})
+    res.cookie("token", "", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    path: "/",                // 👈 must match login
+    expires: new Date(0),     // 👈 expire immediately
+  });
 
     return res.json({message:"logout successfully",status:true})
 })
