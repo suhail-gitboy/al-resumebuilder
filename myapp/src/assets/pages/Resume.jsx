@@ -176,7 +176,7 @@ setTimeout(() => {
     toast.error("register to download")
   
 }, 1000);
-if(!isLogin){
+if(isLogin){
 Setmodallogin(true)
 }
   
