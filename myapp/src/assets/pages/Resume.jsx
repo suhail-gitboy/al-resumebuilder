@@ -38,6 +38,7 @@ import AiInputModal from '../modals/Aimodal'
 
 
 
+
 const Resume = ({name}) => {
     const [page,Setpage]=useState(1)
 
@@ -131,7 +132,7 @@ const Handleswitch=(pages)=>{
 const Pdfref=useRef(null)
 const [isLogin,Setislogin]=useState(false)
 
-
+console.log(isLogin);
 useEffect(()=>{
   axios.get("https://al-resumebuilder.onrender.com/api/checklogin",{withCredentials:true})
   .then((res)=>{
@@ -169,26 +170,23 @@ useEffect(()=>{
 
 
 const Handlesave=()=>{
-     
-axios.post("https://al-resumebuilder.onrender.com/api/save",{resumedata:userInformation},{withCredentials:true}).then(res=>{
- 
-  if(res.data.status){
-    toast.success(res.data.message)
- }else(
-    toast.error(res.data.message)
-  )
-
-
-
-})
-  if(isLogin==false){
+    if(isLogin==false){
 Setmodallogin(true)
 setTimeout(() => {
     toast.error("register to download")
   
-}, 1000);
+}, 1000);}
+else{ 
+axios.post("https://al-resumebuilder.onrender.com/api/save",{resumedata:userInformation},{withCredentials:true}).then(res=>{
+ 
+  if(res.data.status){
+    toast.success(res.data.message)
+ }else{
+    toast.error(res.data.message)
+ }
+})}
 }
-}
+
 
 
 const {isUpdate,Setupdate}=useOutletContext()
