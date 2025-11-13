@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Formik,Form,Field } from 'formik'
 import { motion } from 'framer-motion'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { toast } from 'sonner'
 import * as Yup from "yup"
 import Axios  from 'axios'
@@ -25,10 +25,11 @@ const Loginfunction=(values)=>{
     console.log(values);
     
     if(res.data.status){
-     
+      localStorage.setItem("username",res.data.name)
+      Setlogin(false)
  toast.success(res.data.message)
     
-      Setlogin(false)
+     
         
       
 
@@ -46,6 +47,11 @@ const Handleclose=(e)=>{
 
   }
 }
+
+
+useEffect(()=>{
+localStorage.getItem("username") && Setlogin(false)
+},[])
 
   return (
     <div className='inset-0 fixed flex justify-center items-center bg-black/45 z-100' ref={newRef}  onClick={Handleclose}>
