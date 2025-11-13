@@ -61,6 +61,7 @@ res.cookie("token",token,{
     httpOnly:true,
     secure: true,
     sameSite: "none",
+     path: "/",
     maxAge: 3600 * 1000,
 })
 
