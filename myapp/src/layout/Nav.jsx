@@ -43,7 +43,7 @@ useEffect(()=>{
     <div initial={{opacity:0}} animate={{opacity:1}} transition={{duration:1}}>
            <header className="w-full py-5 px-10  flex justify-between items-center bg-[#1a1a23] shadow-lg">
                   <div className={`w-2/3 ${translate?"translate-x-0":"-translate-x-full"} transform transition-transform duration-200 fixed md:hidden z-20 h-full left-0 top-0 bottom-0`}>
-<Sidebar Setranslate={Settranslate} name={name} Setmodalsign={Setmodalsign}/>
+<Sidebar Handlelogut={Handlelogut} Setranslate={Settranslate} name={name} Setmodalsign={Setmodalsign}/>
       </div>
         <h1 className="text-3xl font-extrabold text-purple-500">ResumeBuilder</h1>
         <nav className=" gap-8 text-gray-300 font-medium hidden md:flex">

@@ -2,7 +2,9 @@ import React from 'react'
 import { IoIosClose } from "react-icons/io";
 import { NavLink } from 'react-router'
 import { FaRegUser } from "react-icons/fa";
-const Sidebar = ({Setranslate,Setmodalsign,name}) => {
+const Sidebar = ({Setranslate,Setmodalsign,name,Handlelogut}) => {
+
+
   return (
     <div className='bg-neutral-800 p-5 h-screen '>
         <div className='mt-5 flex justify-end' onClick={()=>Setranslate(false)}>
