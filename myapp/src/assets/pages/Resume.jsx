@@ -137,8 +137,8 @@ useEffect(()=>{
   axios.get("https://al-resumebuilder.onrender.com/api/checklogin",{withCredentials:true})
   .then((res)=>{
     console.log(res.data);
-    
-    if(res.data.isLogged){
+    const name=localStorage.getItem("username")
+    if(name){
        Setislogin(true)
        console.log("its true");
        
@@ -170,12 +170,18 @@ useEffect(()=>{
 
 
 const Handlesave=()=>{
+
+
+
     if(isLogin==false){
 Setmodallogin(true)
 setTimeout(() => {
     toast.error("register to download")
   
 }, 1000);}
+else if(Object.values(userInformation.personalDetails).some(value=>userInformation.personalDetails[value]==="")){
+toast.error("please fill you personal details first")
+}
 else{ 
 axios.post("https://al-resumebuilder.onrender.com/api/save",{resumedata:userInformation},{withCredentials:true}).then(res=>{
  
