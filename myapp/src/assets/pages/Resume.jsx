@@ -170,22 +170,6 @@ useEffect(()=>{
 
 const Handlesave=()=>{
      
-
-if(isLogin==false){
-setTimeout(() => {
-    toast.error("register to download")
-  
-}, 1000);
-if(isLogin){
-Setmodallogin(true)
-}
-  
-
-}
-else{
-
-    
-  
 axios.post("https://al-resumebuilder.onrender.com/api/save",{resumedata:userInformation},{withCredentials:true}).then(res=>{
  
   if(res.data.status){
@@ -193,9 +177,18 @@ axios.post("https://al-resumebuilder.onrender.com/api/save",{resumedata:userInfo
  }else(
     toast.error(res.data.message)
   )
+
+
+  if(isLogin){
+Setmodallogin(true)
+setTimeout(() => {
+    toast.error("register to download")
+  
+}, 1000);
+}
 })}
 
-}
+
 const {isUpdate,Setupdate}=useOutletContext()
 
 
