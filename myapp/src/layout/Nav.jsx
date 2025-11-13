@@ -8,7 +8,7 @@ import {motion} from "framer-motion"
 import Login from '../assets/modals/Login';
 import Signup from '../assets/modals/Signup';
 import axios from 'axios';
-
+import { IoIosLogOut } from 'react-icons/io';
 import { toast } from 'sonner';
 import CoverLetterModal from '../assets/modals/Coverletter';
 const Nav = ({name , Setunsername,loginmodal,Setmodallogin,coverLetter,Setcoverletter,userInformation}) => {
