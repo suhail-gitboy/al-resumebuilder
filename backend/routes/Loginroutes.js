@@ -61,7 +61,7 @@ res.cookie("token",token,{
     httpOnly:true,
     secure: true,
     sameSite: "none",
-     path: "/",
+  
     maxAge: 3600 * 1000,
 })
 
@@ -70,7 +70,12 @@ return res.json({status:true,message:"login successfully",name:Checkif.name})
 
 
 Loginrouter.post("/logout",(req,res)=>{
-    res.clearCookie("token")
+    res.clearCookie("token",{
+  httpOnly: true,
+  secure: true,
+  sameSite: "None",
+  path: "/", // 👈 must match exactly!
+})
 
     return res.json({message:"logout successfully",status:true})
 })
