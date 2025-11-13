@@ -74,7 +74,7 @@ const SwitchtypePdf = () => {
         <PDFDownloadLink
           document={<TypeThreePDF userInformation={userInformation} />}
           fileName={`${userInformation.personalDetails.name}.pdf`}
-          className="bg-indigo-600 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-700 transition-all"
+          className="bg-indigo-600 text-white px-3 py-1  md:px-6 md:py-3 rounded-lg shadow hover:bg-indigo-700 transition-all"
         >
           Download
         </PDFDownloadLink>
@@ -85,7 +85,7 @@ const SwitchtypePdf = () => {
         <PDFDownloadLink
           document={<TypeonePDF userInformation={userInformation} />}
           fileName={`${userInformation.personalDetails.name}.pdf`}
-          className="bg-indigo-600 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-700 transition-all"
+          className="bg-indigo-600 text-white px-3 py-1  md:px-6 md:py-3 rounded-lg shadow hover:bg-indigo-700 transition-all"
         >
           Download
         </PDFDownloadLink>
@@ -97,7 +97,7 @@ const SwitchtypePdf = () => {
         <PDFDownloadLink
           document={<TypeTwoPDF userInformation={userInformation} />}
           fileName={`${userInformation.personalDetails.name}.pdf`}
-          className="bg-indigo-600 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-700 transition-all"
+          className="bg-indigo-600 text-white px-3 py-1  md:px-6 md:py-3 rounded-lg shadow hover:bg-indigo-700 transition-all"
         >
           Download
         </PDFDownloadLink>
@@ -191,7 +191,9 @@ axios.post("https://al-resumebuilder.onrender.com/api/save",{resumedata:userInfo
 
     
 
-  }
+  }else(
+    toast.error("Server error")
+  )
 })}
 
 }
@@ -415,7 +417,7 @@ Setloading(false)
 
         {/*resume*/}
         <div className='w-full lg:w-1/2  p-4 rounded-lg bg-white/70 ' id='preview'>
-<div className='flex justify-baseline items-center space-x-2 my-5'>
+<div className='flex justify-baseline flex-wrap md:flex-wrap items-center space-x-2 my-5'>
    {
   isUpdate?       <div className='mb-2  flex justify-center items-center mt-2 '>
       <a
