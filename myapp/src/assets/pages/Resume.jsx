@@ -181,7 +181,7 @@ axios.post("https://al-resumebuilder.onrender.com/api/save",{resumedata:userInfo
 
 
 })
-  if(isLogin){
+  if(isLogin==false){
 Setmodallogin(true)
 setTimeout(() => {
     toast.error("register to download")
