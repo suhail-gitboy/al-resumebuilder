@@ -2,6 +2,7 @@ import express from "express";
 import Loginmodal from "../Schemas/UserloginSchma.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import { Protuctmiddleware } from "../Middleware.js";
 
 const Secretkey="Mykey"
 export const  Loginrouter=express.Router()
@@ -89,7 +90,7 @@ Loginrouter.get("/checklogin",(req,res)=>{
     }
 })
 
-Loginrouter.get("/getname",async(req,res)=>{
+Loginrouter.get("/getname",Protuctmiddleware,async(req,res)=>{
     const token=req.cookies.token
     const Decoded=jwt.verify(token,Secretkey)
     if(Decoded){

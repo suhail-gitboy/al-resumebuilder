@@ -18,7 +18,7 @@ const Nav = ({name , Setunsername,loginmodal,Setmodallogin,coverLetter,Setcoverl
   const [translate,Settranslate]=useState(false)
 
   const Handlelogut=()=>{
-    axios.post("https://al-resumebuilder.onrender.com/api/logout", { withCredentials: true }).then((res)=>{
+    axios.post("https://al-resumebuilder.onrender.com/api/logout",{}, { withCredentials: true }).then((res)=>{
        localStorage.removeItem("username")
       if(res.data.status){
      
