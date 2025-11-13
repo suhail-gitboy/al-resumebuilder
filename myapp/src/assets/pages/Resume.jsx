@@ -179,6 +179,8 @@ axios.post("https://al-resumebuilder.onrender.com/api/save",{resumedata:userInfo
   )
 
 
+
+})
   if(isLogin){
 Setmodallogin(true)
 setTimeout(() => {
@@ -186,7 +188,7 @@ setTimeout(() => {
   
 }, 1000);
 }
-})}
+}
 
 
 const {isUpdate,Setupdate}=useOutletContext()
