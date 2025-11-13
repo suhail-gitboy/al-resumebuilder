@@ -442,7 +442,7 @@ onClick={Handleupdated}    >
  <div>
   
  {
-  isLogin? <SwitchtypePdf/> :<button className='bg-indigo-600 text-xs text-nowrap md:text-lg text-white px-6 py-2 rounded-lg shadow hover:bg-indigo-700 transition-all"' onClick={()=>Setmodallogin(true)}>
+  name? <SwitchtypePdf/> :<button className='bg-indigo-600 text-xs text-nowrap md:text-lg text-white px-6 py-2 rounded-lg shadow hover:bg-indigo-700 transition-all"' onClick={()=>Setmodallogin(true)}>
       login to download
     </button>
  }

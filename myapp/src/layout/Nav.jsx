@@ -19,10 +19,12 @@ const Nav = ({name , Setunsername,loginmodal,Setmodallogin,coverLetter,Setcoverl
 
   const Handlelogut=()=>{
     axios.post("https://al-resumebuilder.onrender.com/api/logout", { withCredentials: true }).then((res)=>{
+       localStorage.removeItem("username")
       if(res.data.status){
      
 
           toast.success(res.data.message)
+       
  
         Setunsername(null)
       }

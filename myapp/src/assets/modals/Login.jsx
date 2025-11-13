@@ -50,7 +50,7 @@ const Handleclose=(e)=>{
 
 
 useEffect(()=>{
-localStorage.getItem("username") && Setlogin(false)
+localStorage.getItem("username") 
 },[])
 
   return (
