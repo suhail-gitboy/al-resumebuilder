@@ -53,10 +53,10 @@ useEffect(()=>{
       
         </nav>
        {
-        name?(<button  className="bg-purple-600 hidden md:flex hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-semibold" onClick={Handlelogut}>
-         <IoIosLogOut className='text-xl mr-2 text-white' />  log-out
-        </button>):( <button onClick={()=>Setmodalsign(true)} className="bg-purple-600 hidden md:flex hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-semibold">
+        name==null?( <button onClick={()=>Setmodalsign(true)} className="bg-purple-600 hidden md:flex hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-semibold">
          <FaRegUser className='text-xl mr-2 text-white' />   register
+        </button>):(<button  className="bg-purple-600 hidden md:flex hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-semibold" onClick={Handlelogut}>
+         <IoIosLogOut className='text-xl mr-2 text-white' />  log-out
         </button>)
        }
         <button className='md:hidden'onClick={()=>Settranslate(!translate)}><FiAlignLeft className='text-2xl text-purple-800' /></button>
