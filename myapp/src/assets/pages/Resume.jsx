@@ -185,14 +185,10 @@ else{
   
 axios.post("https://al-resumebuilder.onrender.com/api/save",{resumedata:userInformation},{withCredentials:true}).then(res=>{
  
-  if(res.data.message){
+  if(res.data.status){
     toast.success(res.data.message)
- 
-
-    
-
-  }else(
-    toast.error("Server error")
+ }else(
+    toast.error(res.data.message)
   )
 })}
 

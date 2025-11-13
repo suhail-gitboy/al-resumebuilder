@@ -12,6 +12,10 @@ console.log(resumedata);
 
  const Useremail=req.user.email
 
+const {personalDetails}=resumedata;
+
+const checkifnotfull=Object.values(personalDetails).some((val)=>val.trim()==="")
+
 
 
  const Storedata={
@@ -22,11 +26,15 @@ if(Checkresume){
    return res.json({message:"already there"})
 }
 
+if(checkifnotfull){
+   return res.json({messsage:"pleae fill all the details"})
+}
+
     const datasaved=new Resumemodel(Storedata)
 
    await datasaved.save()
 
-   return res.json({message:"saved to dashboard"})
+   return res.json({status:true,message:"saved to dashboard"})
 
 
 })
