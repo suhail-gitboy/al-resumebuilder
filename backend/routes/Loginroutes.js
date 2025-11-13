@@ -73,7 +73,7 @@ Loginrouter.post("/logout",(req,res)=>{
     res.clearCookie("token",{
   httpOnly: true,
   secure: true,
-  sameSite: "None",
+  sameSite: "none",
   path: "/", // 👈 must match exactly!
 })
 
