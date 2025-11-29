@@ -10,7 +10,7 @@ dayjs.extend(relativeTime);
 const ResumeDashboard = () => {
 const [resumes,Setresumes]=useState([])
 console.log(resumes,"resumes");
-const {userInformation,setUserInformation,name}=useOutletContext()
+const {userInformation,isUpdate,Setupdate,setUserInformation,name}=useOutletContext()
 // const Navigate=useNavigate()
 //   useEffect(()=>{
 //     axios.get("https://al-resumebuilder.onrender.com/api/getdata",{withCredentials:true})
@@ -35,12 +35,13 @@ if(isError){
   
 }
 
-if(isSuccess){ console.log(data);
+useEffect(()=>{
+   console.log(data);
   Setresumes(data)
-}
+
+},[isSuccess,data])
 
 
-const {isUpdate,Setupdate}=useOutletContext()
 
 
   const handleEdit=(data,id)=>{

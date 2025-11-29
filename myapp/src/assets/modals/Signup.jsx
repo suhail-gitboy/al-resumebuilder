@@ -65,7 +65,7 @@ const {mutate,isSuccess,isError,isPending}=useMutation({
     return await axios.post("https://al-resumebuilder.onrender.com/api/signup",{name:values.name,password:values.password,email:values.email})
      
   },
-  onSubmit:(res)=>{
+  onSuccess:(res)=>{
     console.log(res.data.status);
      toast.success(res.data.message)
       Setlogin(true)
