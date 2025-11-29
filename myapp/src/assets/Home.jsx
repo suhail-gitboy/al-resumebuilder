@@ -6,10 +6,10 @@ import ReviewsSection from "./pages/Sectionreview";
 import Templates from "./pages/SectionTemplates";
 import { motion } from "framer-motion";
 
-
+// bg-linear-to-br from-purple-950 via-purple-600 to-purple-900
 const Home = () => {
   return (
-    <div className="min-h-screen flex flex-col  bg-linear-to-br from-purple-950 via-purple-600 to-purple-900 text-gray-100">
+    <div className="min-h-screen flex flex-col bg-neutral-700 text-gray-100">
       {/* Navbar */}
  
 
