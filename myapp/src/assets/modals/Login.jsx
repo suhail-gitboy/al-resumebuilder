@@ -5,6 +5,7 @@ import React, { useEffect, useRef } from 'react'
 import { toast } from 'sonner'
 import * as Yup from "yup"
 import Axios  from 'axios'
+import { useMutation, useQuery } from '@tanstack/react-query'
 
 
 const Login = ({Setsign,Setlogin,name,  Setunsername}) => {
@@ -20,27 +21,49 @@ const Initialvalues={
   password:""
 }
 Axios.defaults.withCredentials=true
-const Loginfunction=(values)=>{
-  axios.post("https://al-resumebuilder.onrender.com/api/login",{email:values.email,password:values.password},{ withCredentials: true }).then(res=>{
-    console.log(values);
+// const Loginfunction=(values)=>{
+//   axios.post("https://al-resumebuilder.onrender.com/api/login",{email:values.email,password:values.password},{ withCredentials: true }).then(res=>{
+//     console.log(values);
     
-    if(res.data.status){
-      localStorage.setItem("username",res.data.name)
-      Setlogin(false)
- toast.success(res.data.message)
+//     if(res.data.status){
+//       localStorage.setItem("username",res.data.name)
+//       Setlogin(false)
+//  toast.success(res.data.message)
     
      
         
       
 
       
-      Setunsername(res.data.name)
+//       Setunsername(res.data.name)
      
-    }else{
-      toast.error(res.data.message)
+//     }else{
+//       toast.error(res.data.message)
+//     }
+//   })
+// }
+
+const {mutate}=useMutation({
+  mutationFn:async(values)=>{
+    return await axios.post("https://al-resumebuilder.onrender.com/api/login",{email:values.email,password:values.password},{ withCredentials: true })
+     
+   
+   
+    },
+    onSuccess:(res)=>{
+          localStorage.setItem("username",res.data.name)
+      Setlogin(false)
+  toast.success(res.data.message)
+     Setunsername(res.data.name)
+    },
+    onError:(res)=>{
+   toast.error(res.data.message)
     }
-  })
-}
+  }
+,
+)
+
+
 const Handleclose=(e)=>{
   if(e.target==newRef.current){
     Setlogin(false)
@@ -60,7 +83,7 @@ localStorage.getItem("username")
 <h2 className="text-3xl font-bold text-white mb-2 text-center">Welcome Back</h2>
 <p className="text-sm text-gray-400 text-center mb-6">Login to continue building your professional resume</p>
 
-<Formik initialValues={Initialvalues} validationSchema={Schemalogin} onSubmit={Loginfunction}>
+<Formik initialValues={Initialvalues} validationSchema={Schemalogin} onSubmit={mutate}>
   {
     ({errors,touched})=>(
 

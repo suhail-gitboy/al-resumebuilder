@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react'
 import { Formik,Form,Field } from 'formik'
 import * as Yup from "yup";
 import { toast } from 'sonner';
+import { useMutation } from '@tanstack/react-query';
 
 const Signup = ({Setsign,Setlogin}) => {
 const refdata=useRef(null)
@@ -26,38 +27,67 @@ const [isSubmited,Setisubmitted]=useState(false)
       .required("Password is required")
   })
 
-  const Handlesubmit=(values)=>{
+//   const Handlesubmit=(values)=>{
 
 
-    if(isSubmited) return 
+//     if(isSubmited) return 
 
-    Setisubmitted(true)
+//     Setisubmitted(true)
    
-try {
-      axios.post("https://al-resumebuilder.onrender.com/api/signup",{name:values.name,password:values.password,email:values.email}).then((res)=>{
-      console.log(res.data.message);
-      if(res.data.status){
-       console.log(res.data.status);
-       toast.success(res.data.message)
-       Setlogin(true)
-       Setsign(false)
-      }else{
+// try {
+//       axios.post("https://al-resumebuilder.onrender.com/api/signup",{name:values.name,password:values.password,email:values.email}).then((res)=>{
+//       console.log(res.data.message);
+//       if(res.data.status){
+//        console.log(res.data.status);
+//        toast.success(res.data.message)
+//        Setlogin(true)
+//        Setsign(false)
+//       }else{
      
        
-      }
+//       }
       
-    })
+//     })
   
-} catch (error) {
-  Setisubmitted(false)
-}
+// } catch (error) {
+//   Setisubmitted(false)
+// }
     
     
+//   }
+
+
+
+const {mutate,isSuccess,isError,isPending}=useMutation({
+  mutationFn:async(values)=>{
+
+    
+    return await axios.post("https://al-resumebuilder.onrender.com/api/signup",{name:values.name,password:values.password,email:values.email})
+     
+  },
+  onSubmit:(res)=>{
+    console.log(res.data.status);
+     toast.success(res.data.message)
+      Setlogin(true)
+    Setsign(false)
+    Setisubmitted(false)
+  },
+  onError: (res) => {
+    Setisubmitted(false);
+    toast.error(res.data.message);
   }
+})
 const Handleback=(e)=>{
   if(e.target==refdata.current){
     Setsign(false)
   }
+}
+
+const Submit=(values)=>{
+  if(isPending){
+    Setisubmitted(true)
+  }
+  mutate(values)
 }
   return (
     <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration:0.3}} className='flex fixed inset-0 bg-black/60  justify-center items-center z-100' onClick={Handleback} ref={refdata}>
@@ -70,7 +100,7 @@ const Handleback=(e)=>{
             Access your dashboard and start building your perfect resume
           </p>
 
-    <Formik initialValues={Initialvalue} validationSchema={Signupschema} onSubmit={Handlesubmit} >
+    <Formik initialValues={Initialvalue} validationSchema={Signupschema} onSubmit={Submit} >
       {({errors})=>(
               <Form className="space-y-5" >
                 <div>
@@ -126,7 +156,7 @@ const Handleback=(e)=>{
               </a>
             </div>
     <button type='submit' disabled={isSubmited} className="w-full bg-linear-to-r from-purple-700 to-purple-500 py-2 rounded-lg font-medium hover:scale-[1.02] transition-transform">
-             {isSubmited?"signing-in":"sign-in"}
+             {isPending?"signing-in":"sign-in"}
             </button>
             
           </Form>

@@ -5,21 +5,40 @@ import { Link, useNavigate, useOutletContext } from 'react-router'
 import dayjs from 'dayjs'
 import relativeTime from "dayjs/plugin/relativeTime";
 import { toast } from 'sonner'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 dayjs.extend(relativeTime);
 const ResumeDashboard = () => {
 const [resumes,Setresumes]=useState([])
 console.log(resumes,"resumes");
 const {userInformation,setUserInformation,name}=useOutletContext()
-const Navigate=useNavigate()
-  useEffect(()=>{
-    axios.get("https://al-resumebuilder.onrender.com/api/getdata",{withCredentials:true})
-    .then(res=>{
-      console.log(res.data.resume);
-      Setresumes(res.data.resume)
+// const Navigate=useNavigate()
+//   useEffect(()=>{
+//     axios.get("https://al-resumebuilder.onrender.com/api/getdata",{withCredentials:true})
+//     .then(res=>{
+//       console.log(res.data.resume);
+//       Setresumes(res.data.resume)
 
       
-    })
-  },[])
+//     })
+//   },[])
+const{data,error,isLoading,isError,isSuccess}=useQuery({
+  queryKey:["history"],
+  queryFn:async()=>{
+   const res= await axios.get("https://al-resumebuilder.onrender.com/api/getdata",{withCredentials:true})
+   return res.data.resume
+  },
+  
+  
+})
+if(isError){
+  console.log(error);
+  
+}
+
+if(isSuccess){ console.log(data);
+  Setresumes(data)
+}
+
 
 const {isUpdate,Setupdate}=useOutletContext()
 
@@ -32,19 +51,37 @@ Setupdate(id)
 
   }
 
-  const Handledelete=(id)=>{
-    axios.delete(`https://al-resumebuilder.onrender.com/api/delete/${id}`,{withCredentials:true}).then(res=>{
-      if(res.data.message){
-        setTimeout(() => {
-          toast.success(res.data.message)
+//   const Handledelete=(id)=>{
+//     axios.delete(`https://al-resumebuilder.onrender.com/api/delete/${id}`,{withCredentials:true}).then(res=>{
+//       if(res.data.message){
+//         setTimeout(() => {
+//           toast.success(res.data.message)
           
-        }, 1000);
-location.reload()
-      }
+//         }, 1000);
+// location.reload()
+//       }
     
       
+//     })
+//   }
+
+
+const query=useQueryClient()
+
+const {mutate}=useMutation({
+  mutationFn:async(id)=>{
+    const res=await axios.delete(`https://al-resumebuilder.onrender.com/api/delete/${id}`,{withCredentials:true})
+    if(res.data.message){
+      toast.success(res.data.message)
+    }
+  },
+  onSuccess:()=>{
+    query.invalidateQueries({
+      queryKey:["history"]
     })
+    
   }
+})
   return (
     <motion.div initial={{opacity:0.5}} animate={{opacity:1}} transition={{duration:0.3}} exit={{opacity:0.4}} className="min-h-screen bg-linear-to-br from-black via-[#0a0014] to-[#1c0029] text-gray-200 p-8">
       <div className="max-w-6xl mx-auto">
@@ -86,7 +123,7 @@ location.reload()
             <div className="mt-4 flex gap-2">
               <Link className="px-3 py-1 text-sm bg-[#1b0b2f] border border-[#3a2360] rounded-md hover:bg-[#26123d]" to={`/view/${data._id}`}>View</Link>
               <button className="px-3 py-1 text-sm bg-[#1b0b2f] border border-[#3a2360] rounded-md hover:bg-[#26123d]" onClick={()=>handleEdit(data,data._id)}>Edit</button>
-              <button className="px-3 py-1 text-sm bg-[#1b0b2f] border border-[#3a2360] rounded-md hover:bg-[#26123d]" onClick={()=>Handledelete(data._id)}>delete</button>
+              <button className="px-3 py-1 text-sm bg-[#1b0b2f] border border-[#3a2360] rounded-md hover:bg-[#26123d]" onClick={()=>mutate(data._id)}>delete</button>
             </div>
           </div>
 )):<h2 className='bg-white/10 p-3 rounded-md'>you haven't created yet</h2>}
