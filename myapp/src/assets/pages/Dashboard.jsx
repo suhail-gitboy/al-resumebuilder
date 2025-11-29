@@ -37,7 +37,7 @@ if(isError){
 
 useEffect(()=>{
    console.log(data);
-  Setresumes(data)
+  Setresumes(data||[])
 
 },[isSuccess,data])
 
