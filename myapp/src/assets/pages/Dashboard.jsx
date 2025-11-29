@@ -9,7 +9,7 @@ dayjs.extend(relativeTime);
 const ResumeDashboard = () => {
 const [resumes,Setresumes]=useState([])
 console.log(resumes,"resumes");
-const {userInformation,setUserInformation}=useOutletContext()
+const {userInformation,setUserInformation,name}=useOutletContext()
 const Navigate=useNavigate()
   useEffect(()=>{
     axios.get("https://al-resumebuilder.onrender.com/api/getdata",{withCredentials:true})

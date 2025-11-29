@@ -67,7 +67,7 @@ const [coverLetter,Setcoverletter]=useState(false)
   return (
   <>
   <Nav name={name}  Setunsername={Setunsername} userInformation={userInformation} coverLetter={coverLetter} Setcoverletter={Setcoverletter}  loginmodal={loginmodal} Setmodallogin={Setmodallogin}/>
-  <Outlet context={{Setmodallogin,userInformation,setUserInformation,Setcoverletter ,isUpdate,Setupdate}}/>
+  <Outlet context={{Setmodallogin,userInformation,setUserInformation,Setcoverletter,name ,isUpdate,Setupdate}}/>
   </>
   )
 }

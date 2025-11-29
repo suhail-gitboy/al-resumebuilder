@@ -15,6 +15,7 @@ import ResumeDashboard from './assets/pages/Dashboard'
 import { grey } from '@mui/material/colors'
 import ViewPage from './assets/pages/View'
 import Previewpage from './assets/pages/Previewpage'
+import Protuctedroute from './assets/pages/Protuctedroute'
 
 
 
@@ -29,7 +30,7 @@ const [name,Setunsername]=useState(null)
         },{
           path:"/generate",element:<Resume name={name} />
         },{
-          path:"/dashboard",element:<ResumeDashboard/>
+          path:"/dashboard",element:(<Protuctedroute> <ResumeDashboard/></Protuctedroute> )
         },{
           path:"/view/:id",element:<ViewPage/>
         },

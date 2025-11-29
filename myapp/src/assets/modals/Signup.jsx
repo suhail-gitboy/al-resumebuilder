@@ -1,12 +1,13 @@
 import axios from 'axios'
 import { motion } from 'framer-motion'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Formik,Form,Field } from 'formik'
 import * as Yup from "yup";
 import { toast } from 'sonner';
 
 const Signup = ({Setsign,Setlogin}) => {
 const refdata=useRef(null)
+const [isSubmited,Setisubmitted]=useState(false)
   const Initialvalue={
     name:"",
     email:"",
@@ -26,8 +27,14 @@ const refdata=useRef(null)
   })
 
   const Handlesubmit=(values)=>{
+
+
+    if(isSubmited) return 
+
+    Setisubmitted(true)
    
-    axios.post("https://al-resumebuilder.onrender.com/api/signup",{name:values.name,password:values.password,email:values.email}).then((res)=>{
+try {
+      axios.post("https://al-resumebuilder.onrender.com/api/signup",{name:values.name,password:values.password,email:values.email}).then((res)=>{
       console.log(res.data.message);
       if(res.data.status){
        console.log(res.data.status);
@@ -40,6 +47,10 @@ const refdata=useRef(null)
       }
       
     })
+  
+} catch (error) {
+  Setisubmitted(false)
+}
     
     
   }
@@ -114,8 +125,8 @@ const Handleback=(e)=>{
                 Forgot password?
               </a>
             </div>
-    <button type='submit' className="w-full bg-linear-to-r from-purple-700 to-purple-500 py-2 rounded-lg font-medium hover:scale-[1.02] transition-transform">
-              Sign In
+    <button type='submit' disabled={isSubmited} className="w-full bg-linear-to-r from-purple-700 to-purple-500 py-2 rounded-lg font-medium hover:scale-[1.02] transition-transform">
+             {isSubmited?"signing-in":"sign-in"}
             </button>
             
           </Form>
