@@ -202,17 +202,7 @@ else if(Object.values(userInformation.personalDetails).some(value => value === "
 toast.error("please fill you personal details first")
 }
 else{ 
-// axios.post("https://al-resumebuilder.onrender.com/api/save",{resumedata:userInformation},{withCredentials:true}).then(res=>{
- 
-//   if(res.data.status){
-//     toast.success(res.data.message)
-//  }else{
-//     toast.error(res.data.message)
-//  }
-// })
-
-
-
+Save()
 }
 }
 
