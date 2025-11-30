@@ -35,6 +35,7 @@ import TypeTwoPDF from '../typetemplate/Typetwopdf'
 import TypeonePDF from '../typetemplate/typeonepdf'
 import TypeThreePDF from '../typetemplate/Typethreepdf'
 import AiInputModal from '../modals/Aimodal'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 
 
@@ -167,6 +168,24 @@ useEffect(()=>{
     }
 
 
+    const Save=useMutation({
+      mutationFn:async()=>{
+       return await axios.post("https://al-resumebuilder.onrender.com/api/save",{resumedata:userInformation},{withCredentials:true})
+
+      },
+      onSuccess:(res)=>{
+if(res.data.status){
+   toast.success(res.data.message)
+
+      }
+    },
+    onError:(res)=>{
+      toast.error(res.data.message)
+
+    }
+  
+  })
+
 
 
 const Handlesave=()=>{
@@ -183,14 +202,18 @@ else if(Object.values(userInformation.personalDetails).some(value => value === "
 toast.error("please fill you personal details first")
 }
 else{ 
-axios.post("https://al-resumebuilder.onrender.com/api/save",{resumedata:userInformation},{withCredentials:true}).then(res=>{
+// axios.post("https://al-resumebuilder.onrender.com/api/save",{resumedata:userInformation},{withCredentials:true}).then(res=>{
  
-  if(res.data.status){
-    toast.success(res.data.message)
- }else{
-    toast.error(res.data.message)
- }
-})}
+//   if(res.data.status){
+//     toast.success(res.data.message)
+//  }else{
+//     toast.error(res.data.message)
+//  }
+// })
+
+
+
+}
 }
 
 
@@ -198,12 +221,30 @@ axios.post("https://al-resumebuilder.onrender.com/api/save",{resumedata:userInfo
 const {isUpdate,Setupdate}=useOutletContext()
 
 
-const Handleupdated=()=>{
-  axios.put(`https://al-resumebuilder.onrender.com/api/update/${isUpdate}`,{resumedata:userInformation},{withCredentials:true}).then(res=>location.reload())
-  Setupdate(null)
-  console.log(isUpdate,"id");
+// const Handleupdated=()=>{
+//   axios.put(`https://al-resumebuilder.onrender.com/api/update/${isUpdate}`,{resumedata:userInformation},{withCredentials:true}).then(res=>location.reload())
+//   Setupdate(null)
+//   console.log(isUpdate,"id");
   
-}
+// }
+const query=useQueryClient()
+const {mutate,error}=useMutation({
+  mutationFn:async()=>{
+   return await axios.put(`https://al-resumebuilder.onrender.com/api/update/${isUpdate}`,{resumedata:userInformation},{withCredentials:true})
+  },
+  onSuccess:(res)=>{
+    Setupdate(null)
+query.invalidateQueries({
+  queryKey:["history"]
+})
+ console.log(isUpdate,"id");
+  },
+  onError:()=>{
+    toast.error(error)
+
+  }
+})
+
 //for steper
 
   const [activeStep, setActiveStep] = React.useState(0);
@@ -422,7 +463,7 @@ Setloading(false)
        
      
       className="flex items-center justify-center gap-2 bg-linear-to-r from-blue-600 to-purple-600 text-white px-5 py-2 rounded-lg font-medium shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-200"
-onClick={Handleupdated}    >
+onClick={mutate}    >
       <FaUpload size={20} />
       Save Update
     </a>
