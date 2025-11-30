@@ -202,7 +202,7 @@ else if(Object.values(userInformation.personalDetails).some(value => value === "
 toast.error("please fill you personal details first")
 }
 else{ 
-Save()
+Save.mutate()
 }
 }
 
